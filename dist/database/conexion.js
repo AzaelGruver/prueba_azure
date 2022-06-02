@@ -16,10 +16,10 @@ var _mssql = _interopRequireDefault(require("mssql"));
 var _config = _interopRequireDefault(require("../config"));
 
 var configuracion = {
-  user: _config["default"].dbUser,
-  password: _config["default"].dbPassword,
-  server: _config["default"].dbServer,
-  database: _config["default"].dbDatabase,
+  user: "powerbi",
+  password: "Soporte1",
+  server: "10.74.210.149",
+  database: "BUSINESS_PRO",
   options: {
     encrypt: false,
     //debe ser true cuando se haga el deploy a azure
