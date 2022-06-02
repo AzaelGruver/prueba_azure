@@ -2,13 +2,15 @@ import sql from 'mssql'
 import config from '../config'
 
 const configuracion = {
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    server:  process.env.DB_SERVER,
-    database: process.env.DB_DATABASE,
+
+    user: config.dbUser,
+    password: config.dbPassword,
+    server:  config.dbServer,
+    database: config.dbDatabase,
     options: {
-        encrypt: true, //debe ser true cuando se haga el deploy a azure
-        trustServerCertificate: false
+        
+        encrypt: false, //debe ser true cuando se haga el deploy a azure
+        trustServerCertificate: true
     }
 }
 export const obtenerConexion = async () => {
@@ -19,4 +21,3 @@ export const obtenerConexion = async () => {
         console.log(error)
     }
 }
-// obtenerConexion()
