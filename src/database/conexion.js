@@ -2,10 +2,10 @@ import sql from 'mssql'
 import config from '../config'
 
 const configuracion = {
-    user: "powerbi",
-    password:"Soporte1",
-    server: "10.74.210.149",
-    database: "BUSINESS_PRO",
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    server:  process.env.DB_SERVER,
+    database: process.env.DB_DATABASE,
     options: {
         encrypt: false, //debe ser true cuando se haga el deploy a azure
         trustServerCertificate: true
