@@ -7,7 +7,7 @@ const configuracion = {
     server:  process.env.DB_SERVER,
     database: process.env.DB_DATABASE,
     options: {
-        encrypt: false, //debe ser true cuando se haga el deploy a azure
+        encrypt: true, //debe ser true cuando se haga el deploy a azure
         trustServerCertificate: true
     }
 }
