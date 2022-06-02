@@ -21,9 +21,9 @@ var configuracion = {
   server: process.env.DB_SERVER,
   database: process.env.DB_DATABASE,
   options: {
-    encrypt: false,
+    encrypt: true,
     //debe ser true cuando se haga el deploy a azure
-    trustServerCertificate: true
+    trustServerCertificate: false
   }
 };
 

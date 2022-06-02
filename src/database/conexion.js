@@ -8,7 +8,7 @@ const configuracion = {
     database: process.env.DB_DATABASE,
     options: {
         encrypt: true, //debe ser true cuando se haga el deploy a azure
-        trustServerCertificate: true
+        trustServerCertificate: false
     }
 }
 export const obtenerConexion = async () => {
