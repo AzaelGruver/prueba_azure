@@ -3,6 +3,6 @@ import { obtenerMecanicos } from '../controllers/mecanicosController'
 const router = Router()
 
 // obtener todos los mecanicos
-router.get('/', obtenerMecanicos)
+router.get('/mecanicos', obtenerMecanicos)
 
 export default router
