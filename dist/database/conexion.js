@@ -16,14 +16,14 @@ var _mssql = _interopRequireDefault(require("mssql"));
 var _config = _interopRequireDefault(require("../config"));
 
 var configuracion = {
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  server: process.env.DB_SERVER,
-  database: process.env.DB_DATABASE,
+  user: _config["default"].dbUser,
+  password: _config["default"].dbPassword,
+  server: _config["default"].dbServer,
+  database: _config["default"].dbDatabase,
   options: {
-    encrypt: true,
+    encrypt: false,
     //debe ser true cuando se haga el deploy a azure
-    trustServerCertificate: false
+    trustServerCertificate: true
   }
 };
 
@@ -58,7 +58,6 @@ var obtenerConexion = /*#__PURE__*/function () {
   return function obtenerConexion() {
     return _ref.apply(this, arguments);
   };
-}(); // obtenerConexion()
-
+}();
 
 exports.obtenerConexion = obtenerConexion;
