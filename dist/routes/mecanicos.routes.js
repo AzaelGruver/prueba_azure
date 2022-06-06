@@ -11,6 +11,7 @@ var _mecanicosController = require("../controllers/mecanicosController");
 
 var router = (0, _express.Router)(); // obtener todos los mecanicos
 
-router.get('/', _mecanicosController.obtenerMecanicos);
+router.get('/mecanicos', _mecanicosController.obtenerMecanicos); // router.get('/mecanicosHoras', calcularHorasMecanico)
+
 var _default = router;
 exports["default"] = _default;
