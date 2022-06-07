@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import { obtenerMecanicos, calcularHorasMecanico } from '../controllers/mecanicosController'
+import { obtenerMecanicos, reporteMecanico } from '../controllers/mecanicosController'
 const router = Router()
 
 // obtener todos los mecanicos
 router.get('/mecanicos', obtenerMecanicos)
-// router.get('/mecanicosHoras', calcularHorasMecanico)
+router.get('/mecanico/:id/:factura', reporteMecanico)
 export default router

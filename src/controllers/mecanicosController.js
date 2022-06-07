@@ -4,6 +4,7 @@ export const obtenerMecanicos = async ( req, res )=> {
     try {
         const pool = await obtenerConexion()
         const resultado = await pool.request().query(querys.getMecanicos)
+        console.log(resultado)
         res.json(resultado.recordset)
     } catch (error) {
         res.status(500)
@@ -11,13 +12,17 @@ export const obtenerMecanicos = async ( req, res )=> {
     }
 }
 // Calcular pago, por horas trabajadas
-export const calcularHorasMecanico = async (req, res) => {
+export const reporteMecanico = async (req, res) => {
   try {
-      const sueldoBase = 3700
-      
-      const pool = await obtenerConexion()
-      const resultado = await pool.request().query(querys.calcularHorasMecanico)
-      console.log(resultado)
+    console.log(req.params)
+    const pool = await obtenerConexion()
+    const resultado = await pool
+        .request()
+        .input("IDTECNICO", req.params.id)
+        .input("SITUACION", req.params.factura)
+        .query(querys.calcularNominaMecanico)
+
+        return res.json(resultado.recordset)
   } catch (error) {
       res.status(500)
       res.send(error.message)
