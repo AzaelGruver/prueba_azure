@@ -13,12 +13,10 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _mssql = _interopRequireDefault(require("mssql"));
 
-var _config = _interopRequireDefault(require("../config"));
-
 var configuracion = {
-  user: powerbi,
-  password: Soporte1,
-  server: ' 10.74.210.149',
+  user: 'powerbi',
+  password: 'Soporte1',
+  server: '10.74.210.149',
   database: 'BUSINESS_PRO',
   options: {
     encrypt: false,

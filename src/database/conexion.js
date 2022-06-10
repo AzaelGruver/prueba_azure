@@ -1,11 +1,10 @@
 import sql from 'mssql'
-import config from '../config'
 
 const configuracion = {
 
-    user: powerbi,
-    password: Soporte1,
-    server: ' 10.74.210.149',
+    user: 'powerbi',
+    password: 'Soporte1',
+    server: '10.74.210.149',
     database:'BUSINESS_PRO',
     options: {
         
