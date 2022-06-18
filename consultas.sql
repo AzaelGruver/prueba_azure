@@ -5,7 +5,8 @@ NOTAS
 *No se encuentra el tiempo trabajado
 *No se encuentra la clasificacion del mecanico
 */
-SELECT DISTINCT 
+SELECT DISTINCT
+	mecanicos.no_empleado,
 	mecanicos.nombre AS MECANICO, 
 	162.59 /*CONSULTA A HORAS*/ AS HORAS,
 	CASE 
