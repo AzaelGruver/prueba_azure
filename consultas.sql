@@ -1,5 +1,10 @@
 /*
 CONSULTA a vistas mecanicos y mecanicos_suc
+NOTAS
+*Hay muchos registros con un no_empleado vacío
+*No se encuentra el tiempo trabajado
+*No se encuentra la clasificacion del mecanico
+*/
 SELECT DISTINCT mecanicos.no_empleado, mecanicos.nombre, mecanicos_suc.COSTO_HORA,
 	CASE 
 		WHEN mecanicos_suc.COSTO_HORA >= 110 then 'A'
@@ -14,9 +19,4 @@ SELECT DISTINCT mecanicos.no_empleado, mecanicos.nombre, mecanicos_suc.COSTO_HOR
 	WHERE mecanicos.no_empleado > 0
 
 
-NOTAS
-*Hay muchos registros con un no_empleado vacío
-*No se encuentra el tiempo trabajado
-*No se encuentra la clasificacion del mecanico
-*/
 
