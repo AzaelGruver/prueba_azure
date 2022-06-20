@@ -30,7 +30,10 @@ export const reporteMecanico = async (req, res) => {
 
 export const nominaAllMecanicos = async (req, res) => {
     try {
-        
+        const pool = await obtenerConexion()
+        const resultado = await pool
+            .request()
+            .input()
     } catch (error) {
         res.status(500)
         res.send(error.message)
