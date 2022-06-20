@@ -121,3 +121,35 @@ GROUP BY mecanicos_suc.id_mec, mecanicos_suc.nombre, mecanicos_suc.COSTO_HORA
 ORDER BY mecanicos_suc.id_mec
 /*
 SELECT mecanicos_suc.id_mec, mecanicos_suc.nombre, (select SUM(destajo_por_fecha_1.ttr) FROM destajo_por_fecha_1 JOIN mecanicos on mecanicos.id_mec = destajo_por_fecha_1.id_mec WHERE destajo_por_fecha_1.fecha_fact BETWEEN '2022-04-01' AND '2022-04-30' AND mecanicos.nombre = mecanicos_suc.nombre) AS HORAS, CASE  	WHEN mecanicos_suc.COSTO_HORA >= 110 then 'A' 	WHEN  mecanicos_suc.COSTO_HORA >= 100 then 'B' 	WHEN  mecanicos_suc.COSTO_HORA >= 90 then 'C' 	WHEN  mecanicos_suc.COSTO_HORA >= 70 then 'D' 	WHEN  mecanicos_suc.COSTO_HORA >= 60 then 'E' 	ELSE 'NO CLASIFICADO' END AS CLASIFICACION, mecanicos_suc.COSTO_HORA, ((select SUM(destajo_por_fecha_1.ttr) FROM destajo_por_fecha_1 JOIN mecanicos on mecanicos.id_mec = destajo_por_fecha_1.id_mec WHERE destajo_por_fecha_1.fecha_fact BETWEEN '2022-04-01' AND '2022-04-30' AND mecanicos.nombre = mecanicos_suc.nombre)* mecanicos_suc.COSTO_HORA) AS Sueldo, 190 AS Objetivo,  (((select SUM(destajo_por_fecha_1.ttr) FROM destajo_por_fecha_1 JOIN mecanicos on mecanicos.id_mec = destajo_por_fecha_1.id_mec WHERE destajo_por_fecha_1.fecha_fact BETWEEN '2022-04-01' AND '2022-04-30' AND mecanicos.nombre = mecanicos_suc.nombre))*100/190) AS Alcance FROM mecanicos_suc  JOIN destajo_por_fecha_1 ON destajo_por_fecha_1.id_mec = mecanicos_suc.id_mec WHERE mecanicos_suc.no_empleado > 0 AND  mecanicos_suc.id_plaza = 8 GROUP BY mecanicos_suc.id_mec, mecanicos_suc.nombre, mecanicos_suc.COSTO_HORA ORDER BY mecanicos_suc.id_mec */
+
+/* CONSULTA FINAL CON PARAMETROS */
+
+SELECT mecanicos_suc.id_mec, mecanicos_suc.nombre,
+(select SUM(destajo_por_fecha_1.ttr)
+FROM destajo_por_fecha_1 JOIN mecanicos on mecanicos.id_mec = destajo_por_fecha_1.id_mec
+WHERE destajo_por_fecha_1.fecha_fact BETWEEN fecha_fact= @fechaInicio AND fecha_fact= @fechaFinal
+AND mecanicos.nombre = mecanicos_suc.nombre) AS HORAS,
+CASE 
+	WHEN mecanicos_suc.COSTO_HORA >= 110 then 'A'
+	WHEN  mecanicos_suc.COSTO_HORA >= 100 then 'B'
+	WHEN  mecanicos_suc.COSTO_HORA >= 90 then 'C'
+	WHEN  mecanicos_suc.COSTO_HORA >= 70 then 'D'
+	WHEN  mecanicos_suc.COSTO_HORA >= 60 then 'E'
+	ELSE 'NO CLASIFICADO'
+END AS CLASIFICACION,
+mecanicos_suc.COSTO_HORA,
+((select SUM(destajo_por_fecha_1.ttr)
+FROM destajo_por_fecha_1 JOIN mecanicos on mecanicos.id_mec = destajo_por_fecha_1.id_mec
+WHERE destajo_por_fecha_1.fecha_fact BETWEEN fecha_fact= @fechaInicio AND fecha_fact= @fechaFinal
+AND mecanicos.nombre = mecanicos_suc.nombre)* mecanicos_suc.COSTO_HORA) AS Sueldo,
+190 AS Objetivo, 
+(((select SUM(destajo_por_fecha_1.ttr)
+FROM destajo_por_fecha_1 JOIN mecanicos on mecanicos.id_mec = destajo_por_fecha_1.id_mec
+WHERE destajo_por_fecha_1.fecha_fact BETWEEN fecha_fact= @fechaInicio AND fecha_fact= @fechaFinal
+AND mecanicos.nombre = mecanicos_suc.nombre))*100/190) AS Alcance
+FROM mecanicos_suc 
+JOIN destajo_por_fecha_1 ON destajo_por_fecha_1.id_mec = mecanicos_suc.id_mec
+WHERE mecanicos_suc.no_empleado > 0
+AND  mecanicos_suc.id_plaza = @idPlaza
+GROUP BY mecanicos_suc.id_mec, mecanicos_suc.nombre, mecanicos_suc.COSTO_HORA
+ORDER BY mecanicos_suc.id_mec
