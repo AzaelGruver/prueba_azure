@@ -6,4 +6,6 @@ const router = Router()
 router.get('/mecanicos', obtenerMecanicos)
 router.get('/mecanico/:id/:factura', reporteMecanico)
 router.get('/mecanicos/:fechaInicio/:fechaFinal/:idPlaza', nominaAllMecanicos)
+//router.get('/mecanicosReporte', nominaAllMecanicos)
+// router.get('/mecanicosReporte', nominaAllMecanicos)
 export default router

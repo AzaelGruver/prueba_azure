@@ -31,12 +31,13 @@ export const reporteMecanico = async (req, res) => {
 export const nominaAllMecanicos = async (req, res) => {
     try {
         const pool = await obtenerConexion()
-        const resultado = pool
+        const resultado = await pool
         .request()
         .input("fechaInicio", req.params.fechaInicio)
         .input("fechaFinal", req.params.fechaFinal)
         .input("idPlaza",req.params.idPlaza)
         .query(querys.nominaAllMecanicos)
+        return res.json(resultado.recordset)
     } catch (error) {
         res.status(500)
         res.send(error.message)
