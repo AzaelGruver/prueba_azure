@@ -13,5 +13,6 @@ var router = (0, _express.Router)(); // obtener todos los mecanicos
 
 router.get('/mecanicos', _mecanicosController.obtenerMecanicos);
 router.get('/mecanico/:id/:factura', _mecanicosController.reporteMecanico);
+router.get('/reportemecanicos', _mecanicosController.reporteMecanicos);
 var _default = router;
 exports["default"] = _default;
