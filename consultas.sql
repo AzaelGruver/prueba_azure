@@ -25,18 +25,29 @@ NOTAS
 		WHERE mecanicos.no_empleado > 0
 
 
-/*Consulta de reporte con los campos; id_mec, nombre, costo_hora, horas quincenales*/
+/*Consulta de reporte con todos los campos; Falta agrupar las personas con diferentes id_mec*/
 SELECT mecanicos_suc.id_mec, mecanicos_suc.nombre,
-mecanicos_suc.COSTO_HORA,
 (select SUM(destajo_por_fecha_1.ttr)
 FROM destajo_por_fecha_1 
-WHERE destajo_por_fecha_1.fecha_fact BETWEEN '2022-05-01' AND '2022-05-05'
-AND destajo_por_fecha_1.id_mec = mecanicos_suc.id_mec) AS HORAS 
-
+WHERE destajo_por_fecha_1.fecha_fact BETWEEN '2022-04-01' AND '2022-04-30'
+AND destajo_por_fecha_1.id_mec = mecanicos_suc.id_mec) AS HORAS,
+CASE 
+	WHEN mecanicos_suc.COSTO_HORA >= 110 then 'A'
+	WHEN  mecanicos_suc.COSTO_HORA >= 100 then 'B'
+	WHEN  mecanicos_suc.COSTO_HORA >= 90 then 'C'
+	WHEN  mecanicos_suc.COSTO_HORA >= 70 then 'D'
+	WHEN  mecanicos_suc.COSTO_HORA >= 60 then 'E'
+	ELSE 'NO CLASIFICADO'
+END AS CLASIFICACION,
+mecanicos_suc.COSTO_HORA,
+190 AS Objetivo, 
+(((SELECT SUM(destajo_por_fecha_1.ttr)
+FROM destajo_por_fecha_1 
+WHERE destajo_por_fecha_1.fecha_fact BETWEEN '2022-04-01' AND '2022-04-30'
+AND destajo_por_fecha_1.id_mec = mecanicos_suc.id_mec))*100/190) AS Alcance
 FROM mecanicos_suc 
-JOIN destajo_por_fecha_1 on destajo_por_fecha_1.id_mec = mecanicos_suc.id_mec
-WHERE destajo_por_fecha_1.fecha_fact BETWEEN '2022-05-01' AND '2022-05-05'
-AND mecanicos_suc.no_empleado > 0
+JOIN destajo_por_fecha_1 ON destajo_por_fecha_1.id_mec = mecanicos_suc.id_mec
+WHERE mecanicos_suc.no_empleado > 0
 GROUP BY mecanicos_suc.id_mec, mecanicos_suc.nombre, mecanicos_suc.COSTO_HORA
 ORDER BY mecanicos_suc.id_mec
 
