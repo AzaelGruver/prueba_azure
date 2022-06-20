@@ -27,3 +27,15 @@ export const reporteMecanico = async (req, res) => {
       res.send(error.message)
   }  
 }
+
+// export const  reporteMecanicos = async ( req, res ) => {
+//     try {
+//         const pool = await obtenerConexion()
+//         const resultado = await pool.request().query(querys.reporteMecanicos)
+//         console.log(resultado)
+//         res.json(resultado.recordset)
+//     } catch (error) {
+//         res.status(500)
+//         res.send(error.message)
+//     }
+// }

@@ -6,5 +6,3 @@ const router = Router()
 router.get('/mecanicos', obtenerMecanicos)
 router.get('/mecanico/:id/:factura', reporteMecanico)
 export default router
-
-
