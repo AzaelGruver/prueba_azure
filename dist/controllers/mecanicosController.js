@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reporteMecanicos = exports.reporteMecanico = exports.obtenerMecanicos = void 0;
+exports.reporteMecanico = exports.obtenerMecanicos = exports.nominaMecanico = exports.nominaAllMecanicos = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -101,7 +101,7 @@ var reporteMecanico = /*#__PURE__*/function () {
 
 exports.reporteMecanico = reporteMecanico;
 
-var reporteMecanicos = /*#__PURE__*/function () {
+var nominaMecanico = /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
     var pool, resultado;
     return _regenerator["default"].wrap(function _callee3$(_context3) {
@@ -115,32 +115,70 @@ var reporteMecanicos = /*#__PURE__*/function () {
           case 3:
             pool = _context3.sent;
             _context3.next = 6;
-            return pool.request().query(_database.querys.reporteMecanicos);
+            return pool.request().input("fechaInicio", req.params.fechaInicio).input("fechaFinal", req.params.fechaFinal).input("idMec", req.params.idMec).query(_database.querys.nominaMecanico);
 
           case 6:
             resultado = _context3.sent;
-            console.log(resultado);
-            res.json(resultado.recordset);
-            _context3.next = 15;
-            break;
+            return _context3.abrupt("return", res.json(resultado.recordset));
 
-          case 11:
-            _context3.prev = 11;
+          case 10:
+            _context3.prev = 10;
             _context3.t0 = _context3["catch"](0);
             res.status(500);
             res.send(_context3.t0.message);
 
-          case 15:
+          case 14:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 11]]);
+    }, _callee3, null, [[0, 10]]);
   }));
 
-  return function reporteMecanicos(_x5, _x6) {
+  return function nominaMecanico(_x5, _x6) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-exports.reporteMecanicos = reporteMecanicos;
+exports.nominaMecanico = nominaMecanico;
+
+var nominaAllMecanicos = /*#__PURE__*/function () {
+  var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
+    var pool, resultado;
+    return _regenerator["default"].wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return (0, _database.obtenerConexion)();
+
+          case 3:
+            pool = _context4.sent;
+            _context4.next = 6;
+            return pool.request().input("fechaInicio", req.params.fechaInicio).input("fechaFinal", req.params.fechaFinal).input("idPlaza", req.params.idPlaza).query(_database.querys.nominaAllMecanicos);
+
+          case 6:
+            resultado = _context4.sent;
+            return _context4.abrupt("return", res.json(resultado.recordset));
+
+          case 10:
+            _context4.prev = 10;
+            _context4.t0 = _context4["catch"](0);
+            res.status(500);
+            res.send(_context4.t0.message);
+
+          case 14:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 10]]);
+  }));
+
+  return function nominaAllMecanicos(_x7, _x8) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+exports.nominaAllMecanicos = nominaAllMecanicos;
