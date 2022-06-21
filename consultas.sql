@@ -165,7 +165,7 @@ Select mecanicos_suc.id_mec, mecanicos_suc.nombre, destajo_por_fecha_1.no_orden,
 destajo_por_fecha_1.descripcion,  destajo_por_fecha_1.ttr as horas, mecanicos_suc.COSTO_HORA AS Tarifa, (destajo_por_fecha_1.ttr*mecanicos_suc.COSTO_HORA) AS salario  ,destajo_por_fecha_1.estado, destajo_por_fecha_1.fecha_fact
 FROM destajo_por_fecha_1 JOIN mecanicos_suc on mecanicos_suc.id_mec = destajo_por_fecha_1.id_mec
 WHERE destajo_por_fecha_1.fecha_fact BETWEEN '2022-04-01' AND '2022-05-30'
-AND mecanicos_suc.nombre = (SELECT mecanicos_suc.nombre WHERE mecanicos_suc.id_mec = 'SCA')
-ORDER BY destajo_por_fecha_1.fecha_fact 
+AND mecanicos_suc.id_mec = 'SCA' OR mecanicos_suc.id_mec = 'SCA0'
+ORDER BY destajo_por_fecha_1.fecha_fact
 
 Select mecanicos_suc.id_mec, mecanicos_suc.nombre, destajo_por_fecha_1.no_orden, destajo_por_fecha_1.descripcion,  destajo_por_fecha_1.ttr as horas, mecanicos_suc.COSTO_HORA AS Tarifa, (destajo_por_fecha_1.ttr*mecanicos_suc.COSTO_HORA) AS salario  ,destajo_por_fecha_1.estado, destajo_por_fecha_1.fecha_fact FROM destajo_por_fecha_1 JOIN mecanicos_suc on mecanicos_suc.id_mec = destajo_por_fecha_1.id_mec WHERE destajo_por_fecha_1.fecha_fact BETWEEN @fechaInicio AND @fechaFinal AND mecanicos_suc.nombre = (SELECT mecanicos_suc.nombre WHERE mecanicos_suc.id_mec = @idMec) ORDER BY destajo_por_fecha_1.fecha_fact 

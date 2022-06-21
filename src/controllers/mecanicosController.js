@@ -52,6 +52,7 @@ export const detallesNominaMecanico = async (req, res) => {
         .input("fechaInicio", req.params.fechaInicio)
         .input("fechaFinal", req.params.fechaFinal)
         .input("idMec", req.params.idMec)
+        .input("idMeca", req.params.idMeca)
         .query(querys.detallesNominaMecanico)
         return res.json(resultado.recordset)
     } catch (error) {

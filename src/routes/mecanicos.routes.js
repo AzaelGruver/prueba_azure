@@ -7,7 +7,7 @@ router.get('/mecanicos', obtenerMecanicos)
 //router.get('/mecanico/:id/:factura', reporteMecanico)
 
 router.get('/mecanico/:fechaInicio/:fechaFinal/:idMec', nominaMecanico)
-router.get('/mecanico_detalles/:fechaInicio/:fechaFinal/:idMec', detallesNominaMecanico)
+router.get('/mecanico_detalles/:fechaInicio/:fechaFinal/:idMec/:idMeca', detallesNominaMecanico)
 router.get('/mecanicos/:fechaInicio/:fechaFinal/:idPlaza', nominaAllMecanicos)
 //router.get('/mecanicosReporte', nominaAllMecanicos)
 // router.get('/mecanicosReporte', nominaAllMecanicos)
