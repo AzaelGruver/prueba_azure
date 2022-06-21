@@ -28,6 +28,21 @@ export const reporteMecanico = async (req, res) => {
   }  
 }
 
+export const nominaMecanico = async (req, res) => {
+    try {
+        const pool = await obtenerConexion()
+        const resultado = await pool 
+        .request()
+        .input("fechaInicio", req.params.fechaInicio)
+        .input("fechaFinal", req.params.fechaFinal)
+        .input("idMec", req.params.idMec)
+        .query(querys.nominaMecanico)
+        return res.json(resultado.recordset)
+    } catch (error) {
+        res.status(500)
+        res.send(error.message)
+    }
+}
 export const nominaAllMecanicos = async (req, res) => {
     try {
         const pool = await obtenerConexion()
