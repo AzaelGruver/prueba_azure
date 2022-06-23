@@ -35,7 +35,7 @@ export const nominaMecanico = async (req, res) => {
         .request()
         .input("fechaInicio", req.params.fechaInicio)
         .input("fechaFinal", req.params.fechaFinal)
-        .input("idMec", req.params.idMec)
+        .input("noEmpleado", req.params.noEmpleado)
         .query(querys.nominaMecanico)
         return res.json(resultado.recordset)
     } catch (error) {
@@ -51,8 +51,7 @@ export const detallesNominaMecanico = async (req, res) => {
         .request()
         .input("fechaInicio", req.params.fechaInicio)
         .input("fechaFinal", req.params.fechaFinal)
-        .input("idMec", req.params.idMec)
-        .input("idMeca", req.params.idMeca)
+        .input("noEmpleado", req.params.noEmpleado)
         .query(querys.detallesNominaMecanico)
         return res.json(resultado.recordset)
     } catch (error) {
